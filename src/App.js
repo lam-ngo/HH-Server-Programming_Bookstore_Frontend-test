@@ -1,18 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ListAllBooks from './component_list/Listing';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    booklist: []
+  };
+
+  //life-cycle method to fire the function: get data from backend API
+  componentDidMount() {
+    this.getBooksFromServer();
+  }
+
+  // get data from backend API
+  getBooksFromServer() {
+      fetch('http://localhost:8080/api/students')
+      .then((response) => response.json())
+      .then((responseData) => {
+          this.setState({
+              students: responseData._embedded.students,
+          });
+      });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <table>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </table>
       </div>
     );
   }
