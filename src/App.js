@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ListAllBooks from './component_list/Listing';
-import booklist from './data';
+//import booklist from './data';
 import './App.css';
 
 class App extends Component {
@@ -8,34 +8,35 @@ class App extends Component {
 
 
   state = {
-    booklist: booklist
+    booklist: []
   };
 
-  /*
+
   //life-cycle method to fire the function: get data from backend API
   componentDidMount() {
     this.getBooksFromServer();
-    console.log(this.state);
   }
 
   // get data from backend API
 
   getBooksFromServer() {
-      fetch('https://lamngo-bookstore.herokuapp.com/books')
+      fetch('https://lamngobookstore.herokuapp.com/books',{method:"GET"})
       .then((response) => response.json())
       .then((responseData) => {
           this.setState({
-              booklist: responseData._embedded,
+              booklist: responseData,
           });
       });
   }
-  */
+
 
   render() {
 
     var bookListingHandle = this.state.booklist.map(book =>
       <ListAllBooks key={book.id} book={book} />
     );
+
+    console.log(this.state.booklist);
     return (
       <div className="App">
         <table>
