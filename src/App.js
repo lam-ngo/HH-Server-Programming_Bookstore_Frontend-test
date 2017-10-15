@@ -20,7 +20,7 @@ class App extends Component {
   // get data from backend API
 
   getBooksFromServer() {
-      fetch('https://lamngobookstore.herokuapp.com/books',{method:"GET"})
+      fetch('http://bookstore-env.umpnrqcnax.eu-west-1.elasticbeanstalk.com/books')
       .then((response) => response.json())
       .then((responseData) => {
           this.setState({
@@ -36,7 +36,6 @@ class App extends Component {
       <ListAllBooks key={book.id} book={book} />
     );
 
-    console.log(this.state.booklist);
     return (
       <div className="App">
         <table>
