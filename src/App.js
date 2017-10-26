@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ListAllBooks from './component_list/Listing';
 //import booklist from './data';
-import './App.css';
 
 class App extends Component {
 
@@ -20,7 +19,7 @@ class App extends Component {
   // get data from backend API
 
   getBooksFromServer() {
-      fetch('http://bookstore-env.umpnrqcnax.eu-west-1.elasticbeanstalk.com/books')
+      fetch('http://localhost:8080/books')
       .then((response) => response.json())
       .then((responseData) => {
           this.setState({
@@ -38,8 +37,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <table>
-          <tbody>
+        <table className="table table-striped table-hover">
+          <thead className="thead-dark">
             <tr>
               <th>Id</th>
               <th>Title</th>
@@ -48,7 +47,7 @@ class App extends Component {
               <th>ISBN</th>
               <th>Price</th>
             </tr>
-          </tbody>
+          </thead>
 
           {bookListingHandle}
         </table>
